@@ -5,11 +5,9 @@ import Select from 'react-select'
 const Filters = (props) => {
     const allOptions = {
         sortOptions: [
-            { value: 1, label: <><StarFill /></> },
-            { value: 2, label: <><StarFill /><StarFill /></> },
-            { value: 3, label: <><StarFill /><StarFill /><StarFill /></> },
-            { value: 4, label: <><StarFill /><StarFill /><StarFill /><StarFill /></> },
-            { value: 5, label: <><StarFill /><StarFill /><StarFill /><StarFill /><StarFill /></> },
+            { value: 'starRating', label: 'Star Rating' },
+            { value: 'datePosted', label: 'Date Posted' },
+            { value: 'likes', label: 'Likes' },
         ],
         dateRangeOptions: [
             { value: -1, label: "Last 1 Day" },
@@ -53,26 +51,32 @@ const Filters = (props) => {
                     <button className="btn btn-primary" type="button" id="button-addon2"><Search viewBox="0 0 16 18" /></button>
                 </div>
             </div>
-            <div className="accordion" id="accordionExample">
+            <div className="accordion">
                 <div className="accordion-item">
                     <h2 className="accordion-header">
-                        <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
                             Sort
                         </button>
                     </h2>
-                    <div id="collapseOne" className="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                    <div id="panelsStayOpen-collapseOne" className="accordion-collapse collapse show">
                         <div className="accordion-body">
-                            Sort
+                            <Select
+                                isMulti
+                                name="Sort"
+                                options={allOptions.sortOptions}
+                                className="basic-multi-select"
+                                classNamePrefix="select"
+                            />
                         </div>
                     </div>
                 </div>
                 <div className="accordion-item">
                     <h2 className="accordion-header">
-                        <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="true" aria-controls="panelsStayOpen-collapseTwo">
                             Date range
                         </button>
                     </h2>
-                    <div id="collapseTwo" className="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div id="panelsStayOpen-collapseTwo" className="accordion-collapse collapse show">
                         <div className="accordion-body">
                             <Select
                                 isMulti
@@ -86,11 +90,11 @@ const Filters = (props) => {
                 </div>
                 <div className="accordion-item">
                     <h2 className="accordion-header">
-                        <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="true" aria-controls="panelsStayOpen-collapseThree">
                             APP version
                         </button>
                     </h2>
-                    <div id="collapseThree" className="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div id="panelsStayOpen-collapseThree" className="accordion-collapse collapse show">
                         <div className="accordion-body">
                             <Select
                                 isMulti
@@ -104,11 +108,11 @@ const Filters = (props) => {
                 </div>
                 <div className="accordion-item">
                     <h2 className="accordion-header">
-                        <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="true" aria-controls="panelsStayOpen-collapseFour">
                             Rating
                         </button>
                     </h2>
-                    <div id="collapseFour" className="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div id="panelsStayOpen-collapseFour" className="accordion-collapse collapse show">
                         <div className="accordion-body">
                             <Select
                                 isMulti
@@ -122,11 +126,11 @@ const Filters = (props) => {
                 </div>
                 <div className="accordion-item">
                     <h2 className="accordion-header">
-                        <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                        <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFive" aria-expanded="true" aria-controls="panelsStayOpen-collapseFive">
                             Review type
                         </button>
                     </h2>
-                    <div id="collapseFive" className="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div id="panelsStayOpen-collapseFive" className="accordion-collapse collapse show">
                         <div className="accordion-body">
                             <Select
                                 isMulti
@@ -140,11 +144,11 @@ const Filters = (props) => {
                 </div>
                 <div className="accordion-item">
                     <h2 className="accordion-header">
-                        <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                        <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseSix" aria-expanded="true" aria-controls="panelsStayOpen-collapseSix">
                             Device
                         </button>
                     </h2>
-                    <div id="collapseSix" className="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div id="panelsStayOpen-collapseSix" className="accordion-collapse collapse show">
                         <div className="accordion-body">
                             <Select
                                 isMulti
@@ -158,14 +162,16 @@ const Filters = (props) => {
                 </div>
                 <div className="accordion-item">
                     <h2 className="accordion-header">
-                        <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                        <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseSeven" aria-expanded="true" aria-controls="panelsStayOpen-collapseSeven">
                             Likes
                         </button>
                     </h2>
-                    <div id="collapseSeven" className="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div id="panelsStayOpen-collapseSeven" className="accordion-collapse collapse show">
                         <div className="accordion-body">
-                            <label htmlFor="customRange1" className="form-label">Likes</label>
-                            <input type="range" className="form-range" id="customRange1" />
+                            <div className="accordion-body">
+                                <label htmlFor="likes" className="form-label">Likes</label>
+                                <input type="number" className="form-control" id="likes" />
+                            </div>
                         </div>
                     </div>
                 </div>
