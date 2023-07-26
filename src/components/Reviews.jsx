@@ -1,11 +1,10 @@
 import React from 'react';
 import Review from './Review';
-import reviewData from '../data';
 
-const Reviews = () => {
+const Reviews = (props) => {
     return (
         <>
-            {reviewData.map((review, index) => (
+            {props.reviews?.map((review, index) => (
                 <Review key={index} {...review} />
             ))}
         </>

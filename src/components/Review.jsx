@@ -1,6 +1,6 @@
 import React from "react";
 import { StarFill, Star, HandThumbsUpFill } from "react-bootstrap-icons";
-import humanizeString from "../utils/humanize";
+import { humanizeString } from "../utils/utils";
 
 const Review = (props) => {
   const {
@@ -32,7 +32,7 @@ const Review = (props) => {
   ));
 
   return (
-    <div className="card mb-2">
+    <div className="card mb-3">
       <div className="card-body">
         <div className="row">
           <div className="d-flex flex-row justify-content-between">
@@ -79,7 +79,7 @@ const Review = (props) => {
                 </li>
                 <li>
                   <span className="d-inline-block bg-secondary rounded-circle p-1 mx-2"></span>{" "}
-                  {deviceType}
+                  {humanizeString(deviceType)}
                 </li>
               </ul>
             </strong>
