@@ -42,7 +42,6 @@ const Filters = (props) => {
     return (
         <div className="position-sticky" style={{ top: "1rem" }}>
             <form onSubmit={props.handleSubmit}>
-
                 <div>
                     <div className="input-group mb-3">
                         <input type="text" className="form-control" placeholder="Search" aria-label="Search" aria-describedby="button-addon2" />
@@ -59,7 +58,6 @@ const Filters = (props) => {
                         <div id="panelsStayOpen-collapseTwo" className="accordion-collapse collapse show">
                             <div className="accordion-body">
                                 <Select
-                                    isMulti
                                     name="days"
                                     options={allOptions.dateRangeOptions}
                                     className="basic-multi-select"
@@ -148,14 +146,12 @@ const Filters = (props) => {
                         </h2>
                         <div id="panelsStayOpen-collapseSeven" className="accordion-collapse collapse show">
                             <div className="accordion-body">
-                                <div className="accordion-body">
-                                    <input type="number" className="form-control" name="likes" />
-                                </div>
+                                <input type="number" className="form-control" name="likes" />
                             </div>
                         </div>
                     </div>
                     <button className="btn btn-primary w-100 mt-1">Apply</button>
-                    <button className="btn btn-secondary w-100 mt-1">Reset all</button>
+                    <button className="btn btn-secondary w-100 mt-1" onClick={props.handleReset}>Reset all</button>
                 </div>
             </form>
         </div>

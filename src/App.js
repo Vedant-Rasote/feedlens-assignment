@@ -52,7 +52,7 @@ function App() {
   };
 
   const handleReset = () => {
-
+    window.location.reload(false);
   }
 
   return (
