@@ -10,39 +10,49 @@ function App() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    const appVersionInputs = e.target.parentElement.querySelectorAll('input[name="appVersion"]')
+    const appVersionValues = processInputs(appVersionInputs);
+
+    const ratingInputs = e.target.parentElement.querySelectorAll('input[name="rating"]')
+    const ratingValues = processInputs(ratingInputs, true);
+
+    const reviewTypeInputs = e.target.parentElement.querySelectorAll('input[name="reviewType"]')
+    const reviewTypeValues = processInputs(reviewTypeInputs);
+
+    const deviceTypeInputs = e.target.parentElement.querySelectorAll('input[name="deviceType"]')
+    const deviceTypeValues = processInputs(deviceTypeInputs);
+
     let formData = {
-      days: e.target.days.value,
-      appVersion: e.target.appVersion.value,
-      rating: e.target.rating.value,
-      reviewType: e.target.reviewType.value,
-      deviceType: e.target.deviceType.value,
-      likes: e.target.likes.value
+      appVersion: appVersionValues,
+      rating: ratingValues,
+      reviewType: reviewTypeValues,
+      deviceType: deviceTypeValues,
+      likes: e.target.likes.value,
+      days: e.target.days.value
     };
-    console.log(formData);
+
     setReviews(filteredData(formData));
+  }
+
+  const processInputs = (inputs, convert = false) => {
+    let combined = Array.from(inputs).map(input => convert ? parseInt(input.value) : input.value);
+    return combined.filter(Boolean).length > 0 ? combined.filter(Boolean) : null;
   }
 
   const filteredData = (formData) => {
     const { days, rating, reviewType, deviceType, appVersion, likes } = formData;
 
-    const versionNumber = appVersion.split(" ")[0];
-
     const filteredReviews = reviewData.filter((review) => {
       const parsedDate = DateTime.fromFormat(review.datePosted, "MMMM d, yyyy h:mm a");
       const today = DateTime.local();
-      let daysAgo;
-      if (days === '') {
-        daysAgo = Infinity;
-      } else {
-        daysAgo = today.minus({ days: parseInt(days) });
-      }
-
+      let daysAgo = (days === '') ? Infinity : today.minus({ days: parseInt(days) });
+      const versionNumber = review.appVersion.split(" ")[0];
       return (
-        ((rating !== '') ? review.starRating === parseInt(rating) : true) &&
-        ((reviewType !== '') ? review.reviewType === reviewType : true) &&
-        ((deviceType !== '') ? review.deviceType === deviceType : true) &&
+        ((rating != null) ? rating.includes(review.starRating) : true) &&
+        ((reviewType != null) ? reviewType.includes(review.reviewType) : true) &&
+        ((deviceType != null) ? deviceType.includes(review.deviceType) : true) &&
+        ((appVersion != null) ? appVersion.includes(versionNumber) : true) &&
         ((likes !== '') ? review.likes === parseInt(likes) : true) &&
-        ((appVersion !== '') ? review.appVersion.includes(versionNumber) : true) &&
         ((days !== '') ? (parsedDate >= daysAgo && parsedDate <= today) : true)
       );
     });
