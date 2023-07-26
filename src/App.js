@@ -1,4 +1,3 @@
-import './App.css';
 import Filters from './components/Filters';
 import Reviews from './components/Reviews';
 import reviewData from './data';
